@@ -7,7 +7,7 @@ class awair:
     self.username = username
     self.password = password
 
-    if not access_token: 
+    if not access_token:
       self.login()
     else:
       self.access_token = access_token
@@ -57,18 +57,18 @@ class awair:
     contents = self.make_request(url, method="GET")
     return contents
 
-  def events_score(self, device_id, desc="true", limit="1"):
-    url = "https://internal.awair.is/v1/devices/awair/"+str(device_id)+"/events/score?desc="+desc+"&limit="+ limit
+  def events_score(self, device_id, device_type, desc="true", limit="1"):
+    url = "https://internal.awair.is/v1/devices/"+device_type+"/"+str(device_id)+"/events/score?desc="+desc+"&limit="+ limit
     events = self.make_request(url, method="GET")
     return events
 
-  def timeline(self, device_id, from_timestamp, to_timestamp):
-    url = "https://internal.awair.is/v1.2/devices/awair/"+str(device_id)+"/timeline?from="+from_timestamp+"&to="+to_timestamp
+  def timeline(self, device_id, device_type, from_timestamp, to_timestamp):
+    url = "https://internal.awair.is/v1.2/devices/"+device_type+"/"+str(device_id)+"/timeline?from="+from_timestamp+"&to="+to_timestamp
     timeline = self.make_request(url, method="GET")
     return timeline
 
-  def sleep_report(self, device_id, timestamp, lang="en" ):
-    url = "https://internal.awair.is/v1.2/users/self/devices/awair/"+str(device_id)+"/sleep-report?lang="+lang+"&timestamp="+timestamp
+  def sleep_report(self, device_id, device_type, timestamp, lang="en" ):
+    url = "https://internal.awair.is/v1.2/users/self/devices/"+device_type+"/"+str(device_id)+"/sleep-report?lang="+lang+"&timestamp="+timestamp
     timeline = self.make_request(url, method="GET")
     return timeline
 
